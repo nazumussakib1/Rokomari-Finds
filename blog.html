@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reviews — Rokomari Finds</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Noto+Serif+Bengali:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-bn">রকমারি</span><span class="logo-en">FINDS</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="blog.html" class="active">Reviews</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()">&#9776;</button>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <h1 data-bn="বই রিভিউ" data-en="Book Reviews">বই রিভিউ</h1>
+    <p data-bn="সৎ, বিস্তারিত এবং হৃদয় থেকে লেখা রিভিউ।" data-en="Honest, detailed, and heartfelt book reviews.">সৎ, বিস্তারিত এবং হৃদয় থেকে লেখা রিভিউ।</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="blog-grid" id="blogGrid">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <p>© 2025 Rokomari Finds. <span data-bn="সর্বস্বত্ব সংরক্ষিত।" data-en="All rights reserved.">সর্বস্বত্ব সংরক্ষিত।</span></p>
+    </div>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="main.js"></script>
+<script>
+function renderBlog() {
+  const grid = document.getElementById('blogGrid');
+  if (!grid) return;
+  const lang = currentLang;
+  grid.innerHTML = REVIEWS.map(r => {
+    const stars = '★'.repeat(r.stars) + '☆'.repeat(5 - r.stars);
+    return `
+      <div class="blog-card">
+        <div class="blog-card-img">
+          <span>${r.stars === 5 ? '★' : '☆'}</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-meta">${r.date} &nbsp;|&nbsp; ${lang === 'bn' ? r.tag_bn : r.tag_en} &nbsp;|&nbsp; <span style="color:var(--gold)">${stars}</span></div>
+          <div class="blog-card-title">${lang === 'bn' ? r.title_bn : r.title_en}</div>
+          <div style="font-size:0.8rem;color:var(--gold);font-weight:700;margin-bottom:0.5rem">${lang === 'bn' ? r.book_bn : r.book_en}</div>
+          <div class="blog-card-excerpt">${lang === 'bn' ? r.excerpt_bn : r.excerpt_en}</div>
+          <a href="shop.html" class="read-more">${lang === 'bn' ? 'বইটি কিনুন →' : 'Buy the Book →'}</a>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderBlog();
+  applyLang();
+});
+</script>
+</body>
+</html>

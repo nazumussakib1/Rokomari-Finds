@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shop — Rokomari Finds</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Noto+Serif+Bengali:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-bn">রকমারি</span><span class="logo-en">FINDS</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html" class="active">Shop</a></li>
+      <li><a href="blog.html">Reviews</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()">&#9776;</button>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <h1 data-bn="বইয়ের দোকান" data-en="Book Shop">বইয়ের দোকান</h1>
+    <p data-bn="সেরা বইগুলো একটি জায়গায় — সরাসরি রকমারি থেকে কিনুন।" data-en="The best books in one place — buy directly from Rokomari.">সেরা বইগুলো একটি জায়গায় — সরাসরি রকমারি থেকে কিনুন।</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="shop-filters" id="filterBar">
+      <!-- Rendered by JS -->
+    </div>
+    <div class="books-grid" id="shopGrid">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <p>© 2025 Rokomari Finds. <span data-bn="সর্বস্বত্ব সংরক্ষিত।" data-en="All rights reserved.">সর্বস্বত্ব সংরক্ষিত।</span></p>
+    </div>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="main.js"></script>
+<script>
+let activeCategory = 'সব';
+
+function renderFilterBar() {
+  const bar = document.getElementById('filterBar');
+  const cats = currentLang === 'bn' ? CATEGORIES.bn : CATEGORIES.en;
+  bar.innerHTML = cats.map((c, i) => {
+    const isActive = i === 0 && activeCategory === 'সব' || c === activeCategory;
+    return `<button class="filter-btn${isActive ? ' active' : ''}" onclick="filterBooks('${c}')">${c}</button>`;
+  }).join('') +
+  `<div class="search-bar">
+    <input type="text" id="searchInput" placeholder="${currentLang === 'bn' ? 'বই খোঁজো...' : 'Search books...'}" oninput="renderShop()">
+    <button>🔍</button>
+  </div>`;
+}
+
+function filterBooks(cat) {
+  activeCategory = cat;
+  renderShop();
+}
+
+function renderShop() {
+  renderFilterBar();
+  const grid = document.getElementById('shopGrid');
+  const lang = currentLang;
+  const search = (document.getElementById('searchInput')?.value || '').toLowerCase();
+  let books = BOOKS;
+  if (activeCategory !== 'সব' && activeCategory !== 'All') {
+    books = books.filter(b => b.category_bn === activeCategory || b.category_en === activeCategory);
+  }
+  if (search) {
+    books = books.filter(b =>
+      b.title_bn.toLowerCase().includes(search) ||
+      b.title_en.toLowerCase().includes(search) ||
+      b.author_bn.toLowerCase().includes(search) ||
+      b.author_en.toLowerCase().includes(search)
+    );
+  }
+  grid.innerHTML = books.length ? books.map(b => bookCardHTML(b)).join('') :
+    `<p style="color:var(--muted);font-family:var(--font-bn)">${lang === 'bn' ? 'কোনো বই পাওয়া যায়নি।' : 'No books found.'}</p>`;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderShop();
+  applyLang();
+});
+
+const _origToggle = toggleLang;
+toggleLang = function() { _origToggle(); renderShop(); };
+</script>
+</body>
+</html>

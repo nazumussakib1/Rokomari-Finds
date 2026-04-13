@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — Rokomari Finds</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Noto+Serif+Bengali:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-bn">রকমারি</span><span class="logo-en">FINDS</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="blog.html">Reviews</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()">&#9776;</button>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <h1 data-bn="যোগাযোগ করো" data-en="Get in Touch">যোগাযোগ করো</h1>
+    <p data-bn="প্রশ্ন, মতামত বা সহযোগিতার জন্য আমাদের সাথে যোগাযোগ করো।" data-en="Questions, feedback, or collaborations — reach out to us.">প্রশ্ন, মতামত বা সহযোগিতার জন্য আমাদের সাথে যোগাযোগ করো।</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3 data-bn="আমাদের ঠিকানা" data-en="Find Us">আমাদের ঠিকানা</h3>
+        <div class="contact-item">
+          <div class="contact-icon">📘</div>
+          <div class="contact-details">
+            <h4>Facebook</h4>
+            <p>Rokomari Finds</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✈️</div>
+          <div class="contact-details">
+            <h4>Telegram</h4>
+            <p>@RokomariFinds</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div class="contact-details">
+            <h4>Email</h4>
+            <p>hello@rokomarifinds.com</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-details">
+            <h4 data-bn="অবস্থান" data-en="Location">অবস্থান</h4>
+            <p data-bn="ঢাকা, বাংলাদেশ" data-en="Dhaka, Bangladesh">ঢাকা, বাংলাদেশ</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form" id="contactForm">
+        <div class="form-group">
+          <label data-bn="তোমার নাম" data-en="Your Name">তোমার নাম</label>
+          <input type="text" id="cName" placeholder="Sakib / সাকিব">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="cEmail" placeholder="hello@example.com">
+        </div>
+        <div class="form-group">
+          <label data-bn="বিষয়" data-en="Subject">বিষয়</label>
+          <select id="cSubject">
+            <option value="" data-bn="বিষয় বেছে নাও" data-en="Select a subject">বিষয় বেছে নাও</option>
+            <option data-bn="বই সাজেশন" data-en="Book Suggestion">বই সাজেশন</option>
+            <option data-bn="রিভিউ রিকোয়েস্ট" data-en="Review Request">রিভিউ রিকোয়েস্ট</option>
+            <option data-bn="সহযোগিতা" data-en="Collaboration">সহযোগিতা</option>
+            <option data-bn="অন্যান্য" data-en="Other">অন্যান্য</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label data-bn="বার্তা" data-en="Message">বার্তা</label>
+          <textarea id="cMessage" placeholder="তোমার বার্তা লেখো..."></textarea>
+        </div>
+        <button class="btn-primary" onclick="submitContact()" data-bn="পাঠাও →" data-en="Send →">পাঠাও →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <p>© 2025 Rokomari Finds. <span data-bn="সর্বস্বত্ব সংরক্ষিত।" data-en="All rights reserved.">সর্বস্বত্ব সংরক্ষিত।</span></p>
+    </div>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="main.js"></script>
+<script>
+function submitContact() {
+  const name = document.getElementById('cName').value;
+  const email = document.getElementById('cEmail').value;
+  const message = document.getElementById('cMessage').value;
+  if (!name || !email || !message) {
+    showToast(currentLang === 'bn' ? 'সব ঘর পূরণ করো!' : 'Please fill all fields!');
+    return;
+  }
+  showToast(currentLang === 'bn' ? 'বার্তা পাঠানো হয়েছে! ধন্যবাদ 🎉' : 'Message sent! Thank you 🎉');
+  document.getElementById('cName').value = '';
+  document.getElementById('cEmail').value = '';
+  document.getElementById('cMessage').value = '';
+}
+</script>
+</body>
+</html>
