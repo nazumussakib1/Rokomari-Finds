@@ -570,3 +570,10 @@ body {
   .nl-form input { border-right: 2px solid var(--ink); }
   .stats-row { grid-template-columns: 1fr; gap: 1.5rem; }
 }
+.rokomari-finds {
+    color: #212e52;
+    font-weight: bold;
+    margin-left: 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
