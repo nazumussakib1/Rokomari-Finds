@@ -47,19 +47,24 @@ body {
 }
 .logo {
   text-decoration: none;
-  display: flex; align-items: baseline; gap: 4px;
+  display: flex;
+  align-items: center; 
+  gap: 12px;           
 }
-.logo-bn {
-  font-family: var(--font-bn);
-  font-size: 1.2rem; font-weight: 700;
-  color: var(--brown);
+.nav-logo-img {
+  width: 55px;         
+  height: auto;
+  padding-top: 5px;    
+  display: block;
 }
 .logo-en {
-  font-family: var(--font-display);
-  font-size: 0.75rem; font-weight: 900;
-  letter-spacing: 0.18em;
-  color: var(--gold);
-  text-transform: uppercase;
+  font-family: 'Cinzel', serif; 
+  font-size: 1.6rem;           
+  font-weight: 700;
+  color: #1a3055;               
+  text-transform: capitalize; 
+  margin-top: -3px;
+  letter-spacing: 0.5px;
 }
 .nav-links {
   display: flex; list-style: none; gap: 2rem;
