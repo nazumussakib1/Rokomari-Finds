@@ -46,26 +46,26 @@ body {
   padding: 0 2rem; height: 64px;
 }
 .logo-group {
-  text-decoration: none;
-  display: flex;         /* এটি লোগো এবং নামকে পাশাপাশি আনবে */
-  align-items: center;   /* এটি লোগো এবং নামকে উপর-নিচে সমান মাঝখানে রাখবে */
-  gap: 38px;             /* ১ সেমি দূরত্ব (প্রায় ৩৮ পিক্সেল) */
-  pointer-events: auto;
+  text-decoration: none !important;
+  display: flex !important;        
+  align-items: center  !important;  
+  gap: 38px  !important;            
+  pointer-events: auto !important;
 }
 .main-nav-logo {
-  width: 55px;           /* লোগোর আকার */
-  height: auto;
-  display: block;
-  padding-top: 5px;      /* আপনার রিকোয়েস্ট অনুযায়ী লোগো সামান্য নিচে নামানো */
+  width: 55px  !important;          
+  height: auto !important;
+  display: block !important;
+  padding-top: 5px !important;  
 }
 .rokomari-finds-text {
-  color: #1a3055;        /* লোগোর ডার্ক ব্লু কালার */
-  font-family: 'Playfair Display', serif; 
-  font-size: 1.8rem;     /* সাইজ সামান্য বাড়ানো হয়েছে */
-  font-weight: 700;
-  white-space: nowrap;   /* নাম যেন কোনোভাবেই নিচে না নামে */
-  margin: 0;             /* অতিরিক্ত গ্যাপ কমানোর জন্য */
-  line-height: 1;        /* নিখুঁতভাবে মাঝখানে বসানোর জন্য */
+  color: #1a3055  !important;        
+  font-family: 'Playfair Display', serif  !important; 
+  font-size: 1.8rem !important;    
+  font-weight: 700  !important;
+  white-space: nowrap  !important;   
+  margin: 0  !important;             
+  line-height: 1  !important;       
 }
 .nav-links {
   display: flex; list-style: none; gap: 2rem;
